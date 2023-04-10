@@ -1,5 +1,6 @@
 import os
 import subprocess
+import time
 
 folders = open("folders.txt","r")
 
@@ -10,21 +11,23 @@ if not os.path.isdir("repo"):
 for x in folders:
     line = x.strip()
     
-    created = os.path.join("created",".%s" % line)
-    if not os.path.exists(created):
-        break
-
     description = line.replace("-", " ").title()
 
     repoLink = "https://github.com/Free-Templates-cc/% s.git" % line
     folder = os.path.join("repo",line)
     
-    if not os.path.isdir(folder):
-        print("Directory '% s' created" % line)
-        os.makedirs(folder)
-    else:
+    created = os.path.join("created",".%s" % line)
+    if not os.path.exists(created):
+        print("Repo: %s not yet created" % line)
+        continue
+
+    if os.path.isdir(folder):
         print("Directory '% s' already exist" % line)
-    
+        continue
+
+    os.makedirs(folder)
+    print("Directory '% s' created" % line)
+
     readmeFile = os.path.join(folder,"README.md")
     if not os.path.exists(readmeFile):
         print("README.md File for '% s' created" % line)
@@ -45,3 +48,5 @@ for x in folders:
         print(repoLink)
         subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
         subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
+    
+    time.sleep(30)
