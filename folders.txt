@@ -1,3 +1,4 @@
+megasis-nextjs-starter-template
 plumber-nextjs-starter-template
 rango-nextjs-starter-template
 sierra-nextjs-starter-template
