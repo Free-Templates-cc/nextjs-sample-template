@@ -1,14 +1,28 @@
 import os
+import subprocess
 
-mode = 0o666
 folders = open("folders.txt","r")
 
 # create main repo folder
-if not os.exists("repo"):
-    os.mkdir("repo", mode)
+if not os.path.isdir("repo"):
+    os.makedirs("repo")
 
 for x in folders:
-    print(x)
-    folder = os.path.join("repo",trim(x))
-    if not os.exists(folder):
-        os.mkdir(folder, mode)
+    line = x.strip()
+    print("Directory '% s' created" % line)
+    folder = os.path.join("repo",line)
+    
+    if not os.path.isdir(folder):
+        os.makedirs(folder)
+
+    print("README.md File for '% s' created" % line)
+    f = open(os.path.join(folder,"README.md"), "a")
+    f.write("# % s" % line)
+    f.close()
+
+    subprocess.run(["cd", folder])
+    subprocess.run(["git", "init"])
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "\"initial commit\""])
+    subprocess.run(["git", "branch", "-M", "main"])
+    subprocess.run(["git", "remote", "add", "origin","https://github.com/Free-Templates-cc/sintec-nextjs-starter-template.git"])
