@@ -19,10 +19,12 @@ for x in folders:
     created = os.path.join("created",".%s" % line)
     if not os.path.exists(created):
         print("Repo: %s not yet created" % line)
+        print("--------------------------------------------------")
         continue
 
     if os.path.isdir(folder):
         print("Directory '% s' already exist" % line)
+        print("--------------------------------------------------")
         continue
 
     os.makedirs(folder)
@@ -40,6 +42,7 @@ for x in folders:
     gitFolder = os.path.join(folder,".git")
     if not os.path.isdir(gitFolder):
         print("Initializing Git in '% s' created" % line)
+        print("--------------------------------------------------")
         subprocess.run(["git", "init"], cwd=folder)
         subprocess.run(["git", "branch", "-M", "main"], cwd=folder)
         subprocess.run(["git", "add", "."], cwd=folder)
@@ -49,4 +52,5 @@ for x in folders:
         subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
         subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
     
-    time.sleep(30)
+    print("--------------------------------------------------")
+    time.sleep(60)
