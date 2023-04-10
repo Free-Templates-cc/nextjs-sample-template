@@ -15,29 +15,23 @@ for x in folders:
     folder = os.path.join("repo",line)
     
     if not os.path.isdir(folder):
-        print("Directory '% s' created" % line)
-        os.makedirs(folder)
-    else:
-        print("Directory '% s' already exist" % line)
+        break
     
-    readmeFile = os.path.join(folder,"README.md")
-    if not os.path.exists(readmeFile):
-        print("README.md File for '% s' created" % line)
-        f = open(readmeFile, "a")
-        f.write("# %s" % description)
-        f.write("`%s` is a ready-to-use template for building web applications using the Next.js framework. Next.js is a React-based web framework that enables server-side rendering, automatic code splitting, and efficient client-side routing. The %s provides a basic structure and set of features to help developers get started with Next.js quickly." % (description,description))
-        f.write("[https://free-templates.cc/template/%s]https://free-templates.cc/template/%s" % (line,line))
-        f.close()
-
     gitFolder = os.path.join(folder,".git")
     if not os.path.isdir(gitFolder):
-        print("Initializing Git in '% s' created" % line)
-        subprocess.run(["git", "init"], cwd=folder)
-        subprocess.run(["git", "branch", "-M", "main"], cwd=folder)
-        subprocess.run(["git", "add", "."], cwd=folder)
-        subprocess.run(["git", "commit", "-m", "\"initial commit\""], cwd=folder)
-        
-        print(repoLink)
-        subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
-        subprocess.run(["git", "pull"], cwd=folder)
-        subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
+        break
+
+    subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
+    subprocess.run(["git", "stash"], cwd=folder)
+    subprocess.run(["git", "pull", "origin", "main", "--rebase"], cwd=folder)
+
+    readmeFile = os.path.join(folder,"README.md")
+    f = open(readmeFile, "w")
+    f.write("# %s" % description)
+    f.write("\n\n`%s` is a ready-to-use template for building web applications using the Next.js framework. Next.js is a React-based web framework that enables server-side rendering, automatic code splitting, and efficient client-side routing. The %s provides a basic structure and set of features to help developers get started with Next.js quickly." % (description,description))
+    f.write("\n\nhttps://free-templates.cc/template/%s" % line)
+    f.close()
+
+    subprocess.run(["git", "add", "."], cwd=folder)
+    subprocess.run(["git", "commit", "-m", "initial commit"], cwd=folder)
+    subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)

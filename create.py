@@ -9,6 +9,11 @@ if not os.path.isdir("repo"):
 
 for x in folders:
     line = x.strip()
+    
+    created = os.path.join("created",".%s" % line)
+    if not os.path.exists(created):
+        break
+
     description = line.replace("-", " ").title()
 
     repoLink = "https://github.com/Free-Templates-cc/% s.git" % line
@@ -25,8 +30,8 @@ for x in folders:
         print("README.md File for '% s' created" % line)
         f = open(readmeFile, "a")
         f.write("# %s" % description)
-        f.write("`%s` is a ready-to-use template for building web applications using the Next.js framework. Next.js is a React-based web framework that enables server-side rendering, automatic code splitting, and efficient client-side routing. The %s provides a basic structure and set of features to help developers get started with Next.js quickly." % (description,description))
-        f.write("[https://free-templates.cc/template/%s]https://free-templates.cc/template/%s" % (line,line))
+        f.write("\n\n`%s` is a ready-to-use template for building web applications using the Next.js framework. Next.js is a React-based web framework that enables server-side rendering, automatic code splitting, and efficient client-side routing. The %s provides a basic structure and set of features to help developers get started with Next.js quickly." % (description,description))
+        f.write("\n\nhttps://free-templates.cc/template/%s" % line)
         f.close()
 
     gitFolder = os.path.join(folder,".git")
@@ -39,5 +44,4 @@ for x in folders:
         
         print(repoLink)
         subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
-        subprocess.run(["git", "pull"], cwd=folder)
         subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
