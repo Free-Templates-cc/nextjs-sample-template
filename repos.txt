@@ -1,3 +1,5 @@
+busicol-nextjs-starter-template
+boxus-nextjs-starter-template
 megasis-nextjs-starter-template
 plumber-nextjs-starter-template
 rango-nextjs-starter-template

@@ -46,11 +46,11 @@ for x in folders:
         subprocess.run(["git", "init"], cwd=folder)
         subprocess.run(["git", "branch", "-M", "main"], cwd=folder)
         subprocess.run(["git", "add", "."], cwd=folder)
-        subprocess.run(["git", "commit", "-m", "\"initial commit\""], cwd=folder)
+        subprocess.run(["git", "commit", "-m", "initial commit"], cwd=folder)
         
         print(repoLink)
         subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
         subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
     
     print("--------------------------------------------------")
-    time.sleep(60)
+    time.sleep(120)
