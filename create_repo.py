@@ -32,7 +32,7 @@ for x in repos:
         
         print("New Repo Created: %s" % name)
 
-        time.sleep(60)
+        time.sleep(30)
 
     
     
