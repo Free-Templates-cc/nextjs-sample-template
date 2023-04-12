@@ -53,4 +53,4 @@ for x in folders:
         subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
     
     print("--------------------------------------------------")
-    time.sleep(120)
+    time.sleep(60)
