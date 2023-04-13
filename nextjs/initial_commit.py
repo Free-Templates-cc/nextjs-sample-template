@@ -2,11 +2,14 @@ import os
 import subprocess
 import time
 
-folders = open("folders.txt","r")
+dir_path = os.path.dirname(os.path.realpath(__file__))
+foldersFile = os.path.join(dir_path,"folders.txt")
+folders = open(foldersFile,"r")
 
 # create main repo folder
-if not os.path.isdir("repo"):
-    os.makedirs("repo")
+repoPath = os.path.join(dir_path,"repo")
+if not os.path.isdir(repoPath):
+    os.makedirs(repoPath)
 
 for x in folders:
 
@@ -17,9 +20,9 @@ for x in folders:
     description = line.replace("-", " ").title()
 
     repoLink = "https://github.com/Free-Templates-cc/% s.git" % line
-    folder = os.path.join("repo",line)
+    folder = os.path.join(dir_path,"repo",line)
     
-    created = os.path.join("created",".%s" % line)
+    created = os.path.join(dir_path,"created",".%s" % line)
     if not os.path.exists(created):
         print("Repo: %s not yet created" % line)
         print("--------------------------------------------------")

@@ -1,0 +1,20 @@
+{
+  "name": "github-repo-automation",
+  "version": "1.0.0",
+  "description": "Automatically Create and Initialize Git Repos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nextjs:init" : "python3 ./nextjs/initial_commit.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chesteralan/github-repo-automation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chesteralan/github-repo-automation/issues"
+  },
+  "homepage": "https://github.com/chesteralan/github-repo-automation#readme"
+}
