@@ -9,8 +9,11 @@ if not os.path.isdir("repo"):
     os.makedirs("repo")
 
 for x in folders:
+
     line = x.strip()
     
+    print("- - - - - - - - - - - - - - - - - - - START: %s - - - - - - - - - - - - - - - - - - -" % line)
+
     description = line.replace("-", " ").title()
 
     repoLink = "https://github.com/Free-Templates-cc/% s.git" % line
@@ -48,9 +51,9 @@ for x in folders:
         subprocess.run(["git", "add", "."], cwd=folder)
         subprocess.run(["git", "commit", "-m", "initial commit"], cwd=folder)
         
-        print(repoLink)
+        print("- - - Adding Git Remote: %s - - -" % repoLink)
         subprocess.run(["git", "remote", "add", "origin", repoLink], cwd=folder)
         subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder)
     
-    print("--------------------------------------------------")
-    time.sleep(60)
+    print("- - - - - - - - - - - - - - - - - - - 20 seconds pause - - - - - - - - - - - - - - - - - - -")
+    time.sleep(20)
