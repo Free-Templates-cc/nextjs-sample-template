@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm export
+    - run: npm run export
     - name: Publish to surge.sh
       uses: dswistowski/surge-sh-action@v1.0.1
       with:
