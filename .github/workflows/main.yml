@@ -33,3 +33,4 @@ jobs:
         domain: nextjs-sample-template.free-templates.cc
         login: ${{ secrets.SURGE_LOGIN }}
         token: ${{ secrets.SURGE_TOKEN }}
+        project: out
